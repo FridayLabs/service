@@ -1,8 +1,12 @@
 <?php
 
+require_once __DIR__ . '/../vendor/autoload.php';
 
-echo 1;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
-file_put_contents('php://stdout', 'kek!');
+$log = new Logger('name');
+$log->pushHandler(new StreamHandler('php://stderr', Logger::INFO));
+$log->addInfo('kek!');
 
 echo 'hello world!';

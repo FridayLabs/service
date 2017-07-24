@@ -11,7 +11,16 @@ RUN wget https://getcomposer.org/composer.phar -O /usr/local/bin/composer && \
     chmod +x /usr/local/bin/composer
 
 COPY ./.docker/nginx/default.conf /etc/nginx/sites-available/default
-RUN sed -i -e 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php/7.0/fpm/php.ini
+RUN sed -i -e 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php/7.0/fpm/php.ini && \
+    echo "catch_workers_output = yes" >> /etc/php/7.0/fpm/pool.d/www.conf
+RUN { \
+    echo '[global]'; \
+    echo 'error_log = /proc/self/fd/2'; \
+    echo '[www]'; \
+    echo 'access.log = /proc/self/fd/1'; \
+    echo 'clear_env = no'; \
+    echo 'catch_workers_output = yes'; \
+    } | tee /etc/php/7.0/fpm/pool.d/20-docker.conf
 
 COPY ./.docker/services.supervisord.conf /etc/supervisor/conf.d/
 COPY ./ /var/www
