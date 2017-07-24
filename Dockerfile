@@ -11,8 +11,7 @@ RUN wget https://getcomposer.org/composer.phar -O /usr/local/bin/composer && \
     chmod +x /usr/local/bin/composer
 
 COPY ./.docker/nginx/default.conf /etc/nginx/sites-available/default
-RUN sed -i -e 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php/7.0/fpm/php.ini && \
-    echo "\ndaemon off;" >> /etc/nginx/nginx.conf
+RUN sed -i -e 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php/7.0/fpm/php.ini
 
 COPY ./.docker/services.supervisord.conf /etc/supervisor/conf.d/
 COPY ./ /var/www

@@ -1,2 +1,7 @@
-# service
-12 factor app skeleton
+# 12 factor php skeleton
+
+## dev
+```
+make dev
+```
+
