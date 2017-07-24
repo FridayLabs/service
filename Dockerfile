@@ -15,9 +15,9 @@ RUN sed -i -e 's/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g' /etc/php/7.0/fpm/php.
     echo "catch_workers_output = yes" >> /etc/php/7.0/fpm/pool.d/www.conf
 RUN { \
     echo '[global]'; \
-    echo 'error_log = /proc/self/fd/2'; \
+    echo 'error_log = /dev/stderr'; \
     echo '[www]'; \
-    echo 'access.log = /proc/self/fd/1'; \
+    echo 'access.log = /dev/stdout'; \
     echo 'clear_env = no'; \
     echo 'catch_workers_output = yes'; \
     } | tee /etc/php/7.0/fpm/pool.d/20-docker.conf
