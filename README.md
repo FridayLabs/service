@@ -27,7 +27,11 @@ Dev version will appear here: [http://localhost:8081](http://localhost:8081)
 # 12 factor Manifest
 
 ## Codebase
-Create project via `composer create-project fridaylabs/service` and push it to your repo
+Create project 
+```
+composer create-project fridaylabs/service -s dev --no-install --ignore-platform-reqs test_service <SERVICE_NAME>
+``` 
+and push it to your repo
 ## Dependencies
 Solved by composer
 ## Config
