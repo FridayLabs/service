@@ -29,7 +29,7 @@ Dev version will appear here: [http://localhost:8081](http://localhost:8081)
 ## Codebase
 Create project 
 ```
-composer create-project fridaylabs/service -s dev --no-install --ignore-platform-reqs test_service <SERVICE_NAME>
+composer create-project fridaylabs/service -s dev --no-install --ignore-platform-reqs <SERVICE_NAME>
 ``` 
 and push it to your repo
 ## Dependencies
